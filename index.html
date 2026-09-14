@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plataforma de Arquitectura de Software - Modelo 4+1</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Mermaid.js para los Diagramas UML -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <!-- html2pdf.js para exportar a PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    .diagram-container {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800 flex flex-col min-h-screen">
+
+  <!-- Header / Navbar -->
+  <header class="bg-indigo-900 text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl md:text-2xl font-bold flex items-center gap-2">
+        <span>📐</span> Modelo 4+1 UML
+      </h1>
+      <button id="btn-pdf" onclick="exportToPDF()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow transition flex items-center gap-2">
+        <span>📄</span> Descargar Todo en PDF
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <div class="flex-grow flex flex-col md:flex-row max-w-7xl w-full mx-auto p-4 gap-6">
+    
+    <!-- Sidebar / Menú de Navegación (25 Páginas) -->
+    <aside class="w-full md:w-80 bg-white rounded-lg shadow-md p-4 flex-shrink-0 h-auto md:h-[calc(100vh-6rem)] md:sticky md:top-20 overflow-y-auto">
+      <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Índice de Navegación (25 Secciones)</h2>
+      <nav id="sidebar-nav" class="space-y-1 text-sm">
+        <!-- Generado dinámicamente mediante JS -->
+      </nav>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="flex-1 bg-white rounded-lg shadow-md p-6 md:p-8 overflow-hidden" id="exportable-content">
+      
+      <!-- PÁGINA 1: Introducción -->
+      <section id="page-1" class="page-content space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 1 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Introducción al Modelo 4+1 de Philippe Kruchten</h2>
+        <p class="text-gray-600 leading-relaxed">
+          El Modelo de Vistas de Arquitectura 4+1 fue diseñado por Philippe Kruchten en 1995 para describir la arquitectura de sistemas de software basados en el uso de múltiples vistas concurrentes. Cada vista aborda un conjunto específico de preocupaciones del sistema desde la perspectiva de diferentes involucrados (stakeholders).
+        </p>
+        <div class="bg-indigo-50 border-l-4 border-indigo-600 p-4 rounded">
+          <h4 class="font-bold text-indigo-900">¿Por qué usar 4+1?</h4>
+          <p class="text-sm text-indigo-800">Permite descomponer la complejidad del software organizando los requerimientos y soluciones en 5 perspectivas fundamentales: Lógica, Desarrollo, Procesos, Física y Escenarios.</p>
+        </div>
+      </section>
+
+      <!-- PÁGINA 2: Vista Lógica - Teoría -->
+      <section id="page-2" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 2 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista Lógica: Concepto y Fundamentos</h2>
+        <p class="text-gray-600 leading-relaxed">
+          La Vista Lógica atiende los requerimientos funcionales del sistema. Muestra cómo se organiza conceptualmente el sistema en términos de clases, objetos, interfaces y sus interacciones relacionales.
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-gray-700">
+          <td><strong>Audiencia principal:</strong> Usuarios finales, analistas de negocio y diseñadores de software.</td>
+          <td><strong>Enfoque:</strong> Abstracción, encapsulamiento, herencia y modularidad.</td>
+        </ul>
+      </section>
+
+      <!-- PÁGINA 3: Vista Lógica - Diagrama de Clases (Explicación) -->
+      <section id="page-3" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 3 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista Lógica: Diagrama de Clases - Componentes</h2>
+        <p class="text-gray-600">El Diagrama de Clases es la estructura principal de la vista lógica. Sus componentes esenciales son:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 border rounded bg-gray-50">
+            <h4 class="font-bold text-indigo-900">1. Clase</h4>
+            <p class="text-sm">Representa una entidad con atributos (datos) y métodos (comportamiento).</p>
+          </div>
+          <div class="p-4 border rounded bg-gray-50">
+            <h4 class="font-bold text-indigo-900">2. Relación de Asociación</h4>
+            <p class="text-sm">Enlace estructural entre dos clases (1..*, 1..1).</p>
+          </div>
+          <div class="p-4 border rounded bg-gray-50">
+            <h4 class="font-bold text-indigo-900">3. Composición y Agregación</h4>
+            <p class="text-sm">Relaciones "todo-parte". La composición implica fuerte dependencia de ciclo de vida.</p>
+          </div>
+          <div class="p-4 border rounded bg-gray-50">
+            <h4 class="font-bold text-indigo-900">4. Herencia / Generalización</h4>
+            <p class="text-sm">Permite a una subclase heredar atributos y métodos de una superclase.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PÁGINA 4: Vista Lógica - Diagrama de Clases (Ejemplo) -->
+      <section id="page-4" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 4 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista Lógica: Ejemplo Diagrama de Clases</h2>
+        <div class="diagram-container">
+          <pre class="mermaid">
+classDiagram
+    class Usuario {
+        +int id
+        +string nombre
+        +string email
+        +login()
+    }
+    class Pedido {
+        +int idPedido
+        +date fecha
+        +float total
+        +calcularTotal()
+    }
+    class Producto {
+        +int idProducto
+        +string nombre
+        +float precio
+    }
+    Usuario "1" -- "0..*" Pedido : realiza
+    Pedido "1" *-- "1..*" Producto : contiene
+          </pre>
+        </div>
+        <h4 class="font-bold text-gray-900 mt-4">Explicación del Diagrama:</h4>
+        <p class="text-sm text-gray-600">Un <code>Usuario</code> puede realizar de 0 a muchos <code>Pedidos</code>. Un <code>Pedido</code> está compuesto de 1 o más <code>Productos</code> (Relación de Composición *--).</p>
+      </section>
+
+      <!-- PÁGINA 5: Vista Lógica - Diagrama de Comunicación (Explicación) -->
+      <section id="page-5" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 5 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista Lógica: Diagrama de Comunicación - Componentes</h2>
+        <p class="text-gray-600">El Diagrama de Comunicación enfatiza la organización estructural de los objetos que envían y reciben mensajes.</p>
+        <ul class="list-disc pl-6 space-y-2 text-gray-700">
+          <td><strong>Objetos/Roles:</strong> Instancias de clases representadas por rectángulos.</td>
+          <td><strong>Vínculos:</strong> Líneas sólidas que conectan los objetos interactuantes.</td>
+          <td><strong>Mensajes Numerados:</strong> Indican la secuencia de ejecución implícita (ej. 1: verificar, 1.1: consultar).</td>
+        </ul>
+      </section>
+
+      <!-- PÁGINA 6: Vista Lógica - Diagrama de Comunicación (Ejemplo) -->
+      <section id="page-6" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 6 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista Lógica: Ejemplo Diagrama de Comunicación</h2>
+        <div class="diagram-container">
+          <pre class="mermaid">
+graph LR
+    Cliente[Cliente] -->|1: solicitarPago()| GestorPago[Gestor de Pagos]
+    GestorPago -->|2: validarTarjeta()| Banco[Pasarela de Banco]
+    Banco -->|3: respuestaOK()| GestorPago
+    GestorPago -->|4: confirmarReserva()| BD[(Base de Datos)]
+          </pre>
+        </div>
+        <h4 class="font-bold text-gray-900 mt-4">Explicación de Elementos:</h4>
+        <p class="text-sm text-gray-600">Muestra el flujo estructurado: 1. El cliente solicita pago al gestor; 2. El gestor valida con la entidad bancaria; 3. La respuesta retorna; 4. Se confirma el registro en la BD.</p>
+      </section>
+
+      <!-- PÁGINA 7: Vista de Desarrollo - Teoría -->
+      <section id="page-7" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 7 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista de Desarrollo: Concepto y Fundamentos</h2>
+        <p class="text-gray-600">También conocida como Vista de Implementación. Muestra la organización de los módulos de software en el entorno de desarrollo (bibliotecas, paquetes, subsistemas y ejecutables).</p>
+        <p class="text-gray-600"><strong>Audiencia:</strong> Programadores, testers y gestores de configuración.</p>
+      </section>
+
+      <!-- PÁGINA 8: Vista de Desarrollo - Diagrama de Componentes (Explicación) -->
+      <section id="page-8" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 8 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista de Desarrollo: Diagrama de Componentes</h2>
+        <p class="text-gray-600">Describe la organización física y las dependencias de los componentes de software.</p>
+        <div class="space-y-2">
+          <div class="p-3 bg-gray-50 border-l-4 border-indigo-500">
+            <strong>Componente:</strong> Unidad ejecutable o biblioteca de código.
+          </div>
+          <div class="p-3 bg-gray-50 border-l-4 border-indigo-500">
+            <strong>Interfaz Provista (Lollipop):</strong> Servicios ofrecidos por el componente.
+          </div>
+          <div class="p-3 bg-gray-50 border-l-4 border-indigo-500">
+            <strong>Interfaz Requerida (Socket):</strong> Servicios requeridos para su funcionamiento.
+          </div>
+        </div>
+      </section>
+
+      <!-- PÁGINA 9: Vista de Desarrollo - Diagrama de Componentes (Ejemplo) -->
+      <section id="page-9" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 9 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista de Desarrollo: Ejemplo Diagrama Componentes</h2>
+        <div class="diagram-container">
+          <pre class="mermaid">
+graph TD
+    subgraph Frontend
+        UI[UI Web App - React]
+    end
+    subgraph Backend API
+        Auth[Módulo Autenticación]
+        OrderMod[Módulo de Pedidos]
+    end
+    subgraph Capa Datos
+        DBServer[(PostgreSQL)]
+    end
+
+    UI ..> Auth : API REST / JSON
+    UI ..> OrderMod : API REST / JSON
+    OrderMod ..> DBServer : SQL Driver
+          </pre>
+        </div>
+        <h4 class="font-bold text-gray-900 mt-4">Explicación del Diagrama:</h4>
+        <p class="text-sm text-gray-600">El módulo de UI Frontend depende funcionalmente de las API REST expuestas por Autenticación y Pedidos. Pedidos a su vez se comunica con el motor PostgreSQL.</p>
+      </section>
+
+      <!-- PÁGINA 10: Vista de Procesos - Teoría -->
+      <section id="page-10" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 10 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista de Procesos: Concepto y Fundamentos</h2>
+        <p class="text-gray-600">Aborda los aspectos dinámicos del sistema en tiempo de ejecución: concurrencia, distribución, rendimiento, escalabilidad y sincronización de hilos/procesos.</p>
+        <p class="text-gray-600"><strong>Audiencia:</strong> Integradores de sistemas y arquitectos de rendimiento.</p>
+      </section>
+
+      <!-- PÁGINA 11: Vista de Procesos - Diagrama de Actividad (Explicación) -->
+      <section id="page-11" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 11 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista de Procesos: Diagrama de Actividad</h2>
+        <p class="text-gray-600">Utilizado para modelar flujos de trabajo paso a paso y estados de ejecución.</p>
+        <ul class="list-disc pl-6 space-y-1 text-gray-700">
+          <td><strong>Nodo Inicial/Final:</strong> Comienzo y fin del proceso.</td>
+          <td><strong>Actividades:</strong> Acciones ejecutadas en el flujo.</td>
+          <td><strong>Bifurcaciones (Decisión):</strong> Caminos condicionales.</td>
+          <td><strong>Barras de Sincronización (Fork/Join):</strong> Ejecución concurrente.</td>
+        </ul>
+      </section>
+
+      <!-- PÁGINA 12: Vista de Procesos - Diagrama de Actividad (Ejemplo) -->
+      <section id="page-12" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 12 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista de Procesos: Ejemplo Diagrama de Actividad</h2>
+        <div class="diagram-container">
+          <pre class="mermaid">
+stateDiagram-v2
+    [*] --> IniciarSesion
+    IniciarSesion --> ValidarCredenciales
+    state ValidarCredenciales <<choice>>
+    ValidarCredenciales --> Dashboard : Credenciales OK
+    ValidarCredenciales --> ErrorLogin : Credenciales Erróneas
+    ErrorLogin --> IniciarSesion
+    Dashboard --> [*]
+          </pre>
+        </div>
+        <h4 class="font-bold text-gray-900 mt-4">Explicación del Diagrama:</h4>
+        <p class="text-sm text-gray-600">Representa la lógica de decisiones durante la validación de un login mediante estados y caminos condicionales de error o éxito.</p>
+      </section>
+
+      <!-- PÁGINA 13: Vista de Procesos - Diagrama de Secuencia (Explicación) -->
+      <section id="page-13" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 13 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista de Procesos: Diagrama de Secuencia</h2>
+        <p class="text-gray-600">Modelado temporal de llamadas y mensajes intercambiados entre instancias en el tiempo.</p>
+        <div class="grid grid-cols-2 gap-2 text-sm">
+          <div class="p-2 border rounded"><strong>Líneas de Vida:</strong> Existencia del objeto en el tiempo.</div>
+          <div class="p-2 border rounded"><strong>Mensajes Síncronos:</strong> Esperan respuesta inmediata.</div>
+          <div class="p-2 border rounded"><strong>Mensajes Asíncronos:</strong> No bloquean la ejecución.</div>
+          <div class="p-2 border rounded"><strong>Barra de Activación:</strong> Muestra el tiempo en ejecución activa.</div>
+        </div>
+      </section>
+
+      <!-- PÁGINA 14: Vista de Procesos - Diagrama de Secuencia (Ejemplo) -->
+      <section id="page-14" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 14 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista de Procesos: Ejemplo Diagrama de Secuencia</h2>
+        <div class="diagram-container">
+          <pre class="mermaid">
+sequenceDiagram
+    autonumber
+    actor U as Usuario
+    participant API as Backend API
+    participant DB as Base de Datos
+
+    U->>API: POST /api/login (usr, pass)
+    activate API
+    API->>DB: SELECT * FROM usuarios WHERE ...
+    activate DB
+    DB-->>API: Datos Usuario / Hash
+    deactivate DB
+    API-->>U: 200 OK + JWT Token
+    deactivate API
+          </pre>
+        </div>
+        <h4 class="font-bold text-gray-900 mt-4">Explicación del Diagrama:</h4>
+        <p class="text-sm text-gray-600">Flujo secuencial ordenado en el tiempo para la generación de token de autenticación desde el usuario hasta la base de datos.</p>
+      </section>
+
+      <!-- PÁGINA 15: Vista Física - Teoría -->
+      <section id="page-15" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 15 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista Física: Concepto y Fundamentos</h2>
+        <p class="text-gray-600">Mapea los componentes de software sobre los nodos de hardware, incluyendo la infraestructura de red y topología de despliegue.</p>
+        <p class="text-gray-600"><strong>Audiencia:</strong> Ingenieros DevOps, administradores de red y arquitectos de infraestructura.</p>
+      </section>
+
+      <!-- PÁGINA 16: Vista Física - Diagrama de Despliegue (Explicación) -->
+      <section id="page-16" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 16 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista Física: Diagrama de Despliegue</h2>
+        <p class="text-gray-600">Describe la arquitectura física en hardware donde se ejecuta la solución:</p>
+        <ul class="list-disc pl-6 space-y-1 text-gray-700">
+          <td><strong>Nodo:</strong> Recurso computacional (servidor físico, máquina virtual, contenedor).</td>
+          <td><strong>Artefacto:</strong> Archivo ejecutable, JAR, contenedor Docker desplegado dentro del nodo.</td>
+          <td><strong>Conexión:</strong> Protocolo de enlace de red (HTTP/HTTPS, TCP/IP, JDBC).</td>
+        </ul>
+      </section>
+
+      <!-- PÁGINA 17: Vista Física - Diagrama de Despliegue (Ejemplo) -->
+      <section id="page-17" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 17 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista Física: Ejemplo Diagrama de Despliegue</h2>
+        <div class="diagram-container">
+          <pre class="mermaid">
+graph TB
+    subgraph AWS Cloud
+        subgraph Public Subnet
+            LB[Application Load Balancer]
+        end
+        subgraph Private Subnet
+            EC2_1[Instancia EC2 - App Server 1]
+            EC2_2[Instancia EC2 - App Server 2]
+            RDS[(Instancia RDS PostgreSQL)]
+        end
+    end
+    Client[Navegador Web Cliente] -->|HTTPS :443| LB
+    LB -->|HTTP :8080| EC2_1
+    LB -->|HTTP :8080| EC2_2
+    EC2_1 -->|TCP :5432| RDS
+    EC2_2 -->|TCP :5432| RDS
+          </pre>
+        </div>
+        <h4 class="font-bold text-gray-900 mt-4">Explicación del Diagrama:</h4>
+        <p class="text-sm text-gray-600">Distribución de carga pública y privada utilizando AWS Load Balancer, servidores EC2 redundantes y base de datos relacional RDS en subnet privada.</p>
+      </section>
+
+      <!-- PÁGINA 18: Vista Física - Diagrama de Red (Explicación) -->
+      <section id="page-18" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 18 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista Física: Diagrama de Red</h2>
+        <p class="text-gray-600">Detalla las zonas de seguridad, enrutamiento, Firewalls, DMZs y segmentos de red que interconectan el hardware.</p>
+      </section>
+
+      <!-- PÁGINA 19: Vista Física - Diagrama de Red (Ejemplo) -->
+      <section id="page-19" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 19 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista Física: Ejemplo Diagrama de Red</h2>
+        <div class="diagram-container">
+          <pre class="mermaid">
+graph LR
+    Internet((Internet)) <--> FW1[Firewall Perimetral]
+    subgraph DMZ [Zona Desmilitarizada]
+        WAF[Web Application Firewall]
+    end
+    subgraph LAN_Interna [Red Corporativa]
+        AppSRV[Servidor de Aplicaciones]
+        DBSRV[Servidor DB (Aislado)]
+    end
+    FW1 <--> WAF
+    WAF <-->|Regla Filtrada| AppSRV
+    AppSRV <-->|Puerto Cerrado Externo| DBSRV
+          </pre>
+        </div>
+        <h4 class="font-bold text-gray-900 mt-4">Explicación del Diagrama:</h4>
+        <p class="text-sm text-gray-600">Muestra la segmentación mediante Firewall Perimetral, una zona DMZ con WAF y la LAN interna aislada de conexiones directas a la base de datos.</p>
+      </section>
+
+      <!-- PÁGINA 20: Escenarios (+1) - Teoría -->
+      <section id="page-20" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 20 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Vista Escenarios (+1): Concepto y Casos de Uso</h2>
+        <p class="text-gray-600">La vista "+1" o Escenarios sirve para unir y validar las otras 4 vistas. Consiste en una pequeña cantidad de casos de uso fundamentales que ilustran el comportamiento integral del sistema.</p>
+        <p class="text-gray-600"><strong>Propósito:</strong> Validar la coherencia global de la arquitectura trazada.</p>
+      </section>
+
+      <!-- PÁGINA 21: Escenarios (+1) - Diagrama Ejemplo -->
+      <section id="page-21" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 21 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Escenarios (+1): Ejemplo Diagrama de Casos de Uso</h2>
+        <div class="diagram-container">
+          <pre class="mermaid">
+graph LR
+    Actor1((Cliente))
+    Actor2((Administrador))
+    
+    subgraph Sistema E-Commerce
+        UC1(Realizar Compra)
+        UC2(Gestionar Inventario)
+        UC3(Consultar Estado Pedido)
+    end
+    
+    Actor1 --> UC1
+    Actor1 --> UC3
+    Actor2 --> UC2
+          </pre>
+        </div>
+        <h4 class="font-bold text-gray-900 mt-4">Explicación del Diagrama:</h4>
+        <p class="text-sm text-gray-600">Ilustra los escenarios clave donde interactúan los actores primarios con las funcionalidades del sistema.</p>
+      </section>
+
+      <!-- PÁGINA 22: Ejercicio Práctico Integrador - Planteamiento -->
+      <section id="page-22" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 22 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Ejercicio Integrador: Caso de Estudio "MediQuick"</h2>
+        <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded text-amber-900">
+          <h4 class="font-bold text-lg mb-1">Enunciado del Caso:</h4>
+          <p class="text-sm">
+            Diseñe la arquitectura 4+1 para la plataforma de telemedicina <strong>MediQuick</strong>. Los pacientes solicitan citas médicas en vivo, los médicos atienden por videollamada y las recetas digitales se generan en formato PDF firmado. El sistema requiere alta disponibilidad y cumplimiento normativo estricto de seguridad de datos de salud.
+          </p>
+        </div>
+        <h4 class="font-bold text-gray-900">Desafío para el estudiante:</h4>
+        <p class="text-sm text-gray-700">Analice las vistas en las páginas siguientes para comprender la solución arquitectónica integral propuesta.</p>
+      </section>
+
+      <!-- PÁGINA 23: Ejercicio Práctico - Vista Lógica y Procesos -->
+      <section id="page-23" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 23 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">MediQuick: Vista Lógica y de Procesos</h2>
+        <h4 class="font-bold text-gray-800">Secuencia: Reserva y Consulta Médica</h4>
+        <div class="diagram-container">
+          <pre class="mermaid">
+sequenceDiagram
+    actor P as Paciente
+    participant APP as App MediQuick
+    participant MED as Médico
+    participant SIG as Servidor Receta PDF
+
+    P->>APP: Solicitar Cita Médica
+    APP->>MED: Notificar Teleconsulta
+    MED-->>APP: Aceptar Cita
+    APP->>P: Iniciar Sesión WebRTC Video
+    MED->>SIG: Generar Receta Electrónica
+    SIG-->>P: Enviar PDF Firmado
+          </pre>
+        </div>
+      </section>
+
+      <!-- PÁGINA 24: Ejercicio Práctico - Vista Desarrollo y Física -->
+      <section id="page-24" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 24 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">MediQuick: Vista de Desarrollo y Despliegue</h2>
+        <div class="diagram-container">
+          <pre class="mermaid">
+graph TB
+    subgraph Cloud Infrastructure
+        subgraph K8s Cluster
+            SVC1[Servicio Usuarios/Citas]
+            SVC2[Servicio WebRTC Video]
+            SVC3[Servicio Recetas PDF]
+        end
+        subgraph Storage
+            S3[AWS S3 - Recetas Encriptadas]
+            DB[(DB HiPAA Compliant)]
+        end
+    end
+    SVC1 --> DB
+    SVC3 --> S3
+          </pre>
+        </div>
+      </section>
+
+      <!-- PÁGINA 25: Resumen y Descarga -->
+      <section id="page-25" class="page-content hidden space-y-4">
+        <span class="text-xs font-semibold uppercase px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Página 25 / 25</span>
+        <h2 class="text-3xl font-bold text-indigo-950">Resumen General del Modelo 4+1</h2>
+        <p class="text-gray-600 leading-relaxed">
+          Has completado el recorrido interactivo por las 25 secciones explicativas y prácticas del paradigma de Vistas Arquitectónicas 4+1. Este estándar internacional garantiza la cobertura de todos los stakeholders del sistema de software.
+        </p>
+        <div class="p-6 bg-indigo-50 border border-indigo-200 rounded text-center space-y-4">
+          <h3 class="text-xl font-bold text-indigo-900">¿Listo para guardar tu documentación?</h3>
+          <p class="text-sm text-indigo-800">Haz clic en el siguiente botón para generar un documento PDF consolidado con todas las 25 páginas y diagramas UML renderizados.</p>
+          <button onclick="exportToPDF()" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold shadow-lg transition">
+            📄 Descargar Documento PDF Completo
+          </button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white text-center py-4 text-xs mt-auto">
+    <p>Documentación de Arquitectura de Software - Modelo 4+1 | Proyecto Gen en GitHub Pages</p>
+  </footer>
+
+  <!-- Lógica JavaScript Dinámica -->
+  <script>
+    // Títulos para las 25 páginas
+    const pagesTitles = [
+      "1. Introducción al Modelo 4+1",
+      "2. Vista Lógica: Concepto",
+      "3. Diagrama Clases: Elementos",
+      "4. Diagrama Clases: Ejemplo",
+      "5. Diagrama Comunicación: Elementos",
+      "6. Diagrama Comunicación: Ejemplo",
+      "7. Vista Desarrollo: Concepto",
+      "8. Diagrama Componentes: Elementos",
+      "9. Diagrama Componentes: Ejemplo",
+      "10. Vista Procesos: Concepto",
+      "11. Diagrama Actividad: Elementos",
+      "12. Diagrama Actividad: Ejemplo",
+      "13. Diagrama Secuencia: Elementos",
+      "14. Diagrama Secuencia: Ejemplo",
+      "15. Vista Física: Concepto",
+      "16. Diagrama Despliegue: Elementos",
+      "17. Diagrama Despliegue: Ejemplo",
+      "18. Diagrama Red: Elementos",
+      "19. Diagrama Red: Ejemplo",
+      "20. Escenarios (+1): Concepto",
+      "21. Escenarios (+1): Ejemplo",
+      "22. Ejercicio: Caso MediQuick",
+      "23. Ejercicio: Vistas Lógica y Procesos",
+      "24. Ejercicio: Vistas Desarrollo y Física",
+      "25. Resumen General y Exportación"
+    ];
+
+    // Inicializar Mermaid.js
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+
+    // Renderizar menú lateral de navegación
+    const navContainer = document.getElementById('sidebar-nav');
+    pagesTitles.forEach((title, index) => {
+      const pageNum = index + 1;
+      const btn = document.createElement('button');
+      btn.className = `w-full text-left px-3 py-2 rounded font-medium transition text-xs md:text-sm ${
+        pageNum === 1 ? 'bg-indigo-600 text-white font-bold' : 'text-gray-600 hover:bg-gray-100'
+      }`;
+      btn.innerText = title;
+      btn.onclick = () => showPage(pageNum);
+      btn.id = `nav-btn-${pageNum}`;
+      navContainer.appendChild(btn);
+    });
+
+    // Función para alternar visibilidad entre páginas
+    function showPage(pageNum) {
+      document.querySelectorAll('.page-content').forEach(el => el.classList.add('hidden'));
+      document.getElementById(`page-${pageNum}`).classList.remove('hidden');
+
+      // Actualizar estados visuales de los botones de navegación
+      for (let i = 1; i <= 25; i++) {
+        const btn = document.getElementById(`nav-btn-${i}`);
+        if (i === pageNum) {
+          btn.className = 'w-full text-left px-3 py-2 rounded font-bold bg-indigo-600 text-white text-xs md:text-sm';
+        } else {
+          btn.className = 'w-full text-left px-3 py-2 rounded font-medium text-gray-600 hover:bg-gray-100 text-xs md:text-sm';
+        }
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Exportador Completo a PDF
+    function exportToPDF() {
+      // Revelar temporalmente todas las páginas para la captura del PDF
+      const pages = document.querySelectorAll('.page-content');
+      pages.forEach(p => p.classList.remove('hidden'));
+
+      const element = document.getElementById('exportable-content');
+      const opt = {
+        margin:       0.3,
+        filename:     'Arquitectura_Software_Modelo_4plus1.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+
+      // Generar PDF y restaurar la vista activa
+      html2pdf().set(opt).from(element).save().then(() => {
+        showPage(1); // Restaurar a la vista inicial
+      });
+    }
+  </script>
+</body>
+</html>
